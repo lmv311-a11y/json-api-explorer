@@ -1,8 +1,8 @@
 // so much empty
-
+const postList = document.getElementById("postList")
 const myButton= document.getElementById("fetchButton");
 myButton.addEventListener("click", function(){
-
+postList.innerHTML = "<p>loading</p>"
 
     fetch("https://jsonplaceholder.typicode.com/posts")
 
@@ -13,14 +13,23 @@ myButton.addEventListener("click", function(){
         console.log(json)
     
         const div = document.getElementById("postList");
-    
-        div.innerHTML = `
-            <p> Title: ${json[0].title}</p>
-            <p>Body: ${json[0].body}</p>
-            <p>id: ${json[0].id}</p>
+          
+        let html ="<div>"
 
-        `;
+          for(let i=0; i< json.length;i++) {
+            html += `
+                <p> Title: ${json[i].title}</p>
+                <p>Body: ${json[i].body}</p>
+                <p>id: ${json[i].id}</p>
+            `
+          }  
+          
+        html += "</div>"
+        div.innerHTML = html;
+
+
     })
+
     .catch(function(error){
         console.log('something went wrong')
     });
@@ -59,6 +68,12 @@ headers:{
     .then(function(json){
         console.log(json)
     });
+}
+
+function message(){
+
+const getInput = document.getElementById("formError")
+
 }
 /*
 Tasks
